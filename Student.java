@@ -1,32 +1,50 @@
-package vn.edu.eaut.lab2;
-public class Student {
-    private String studentId;
-    private String fullName;
-    private double attendanceScore;
-    private double midtermScore;
-    private double finalScore;
-    public Student(String studentId, String fullName,
-                   double attendanceScore, double midtermScore, double finalScore) {
-        this.studentId = studentId;
-        this.fullName = fullName;
-        this.attendanceScore = attendanceScore;
-        this.midtermScore = midtermScore;
-        this.finalScore = finalScore;
-    }
-    public String getStudentId() {
-        return studentId;
-    }
-    public String getFullName() {
-        return fullName;
-    }
-    public double getAttendanceScore() {
-        return attendanceScore;
-    }
-    public double getMidtermScore() {
-        return midtermScore;
-    }
-    public double getFinalScore() {
+package vn.edu.eaut.lab3;
 
-        return finalScore;
+public class Student {
+    private String maSinhVien;
+    private String hoTen;
+    private double diemTrungBinh;
+
+    public Student(String maSinhVien, String hoTen, double diemTrungBinh) {
+        this.maSinhVien = maSinhVien;
+        this.hoTen = hoTen;
+        this.diemTrungBinh = diemTrungBinh;
+    }
+
+    public String getMaSinhVien() {
+        return maSinhVien;
+    }
+
+    public void setMaSinhVien(String maSinhVien) {
+        this.maSinhVien = maSinhVien;
+    }
+
+    public String getHoTen() {
+        return hoTen;
+    }
+
+    public void setHoTen(String hoTen) {
+        this.hoTen = hoTen;
+    }
+
+    public double getDiemTrungBinh() {
+        return diemTrungBinh;
+    }
+
+    public void setDiemTrungBinh(double diemTrungBinh) {
+        this.diemTrungBinh = diemTrungBinh;
+    }
+
+    public String getXepLoai() {
+        if (diemTrungBinh >= 8.5) {
+            return "Giỏi";
+        }
+        if (diemTrungBinh >= 7) {
+            return "Khá";
+        }
+        if (diemTrungBinh >= 5) {
+            return "Trung bình";
+        }
+        return "Yếu";
     }
 }
