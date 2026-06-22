@@ -1,37 +1,76 @@
-package vn.edu.eaut.lab2;
-import java.util.Scanner;
+package vn.edu.eaut.lab4;
+
+import javax.swing.*;
+import java.awt.*;
+
 public class App {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("===== LAB 2 - MAVEN PROJECT VA DONG GOI JAR =====");
-        System.out.print("Nhap ma sinh vien: ");
-        String studentId = scanner.nextLine();
-        System.out.print("Nhap ho ten sinh vien: ");
-        String fullName = scanner.nextLine();
-        double attendanceScore = inputScore(scanner, "diem chuyen can");
-        double midtermScore = inputScore(scanner, "diem giua ky");
-        double finalScore = inputScore(scanner, "diem cuoi ky");
-        Student student = new Student(studentId, fullName,
-                attendanceScore, midtermScore, finalScore);
-        double totalScore = GradeCalculator.calculateFinalScore(student);
-        String grade = GradeCalculator.classify(totalScore);
-        System.out.println("\n----- KET QUA HOC PHAN -----");
-        System.out.println("Ma SV: " + student.getStudentId());
-        System.out.println("Ho ten: " + student.getFullName());
-        System.out.printf("Diem tong ket: %.2f%n", totalScore);
-        System.out.println("Xep loai: " + grade);
-        scanner.close();
+        SwingUtilities.invokeLater(() -> new MainMenuFrame().setVisible(true));
     }
-    private static double inputScore(Scanner scanner, String label) {
-        while (true) {
-            try {
-                System.out.print("Nhap " + label + ": ");
-                double score = Double.parseDouble(scanner.nextLine());
-                GradeCalculator.validateScore(score, label);
-                return score;
-            } catch (IllegalArgumentException ex) {
-                System.out.println("Loi: " + ex.getMessage());
-            }
+
+    private static class MainMenuFrame extends JFrame {
+        public MainMenuFrame() {
+            setTitle("Lab04 - Menu");
+            setSize(400, 300);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setLocationRelativeTo(null);
+
+            String[] apps = {"Countdown", "Keyword Search", "Fibonacci", "File Tools", "Prime Sum", "Student CSV Stats", "Product Manager"};
+            JList<String> list = new JList<>(apps);
+            list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+            JButton btnOpen = new JButton("Open");
+            btnOpen.addActionListener(e -> {
+                String sel = list.getSelectedValue();
+                if (sel == null) {
+                    JOptionPane.showMessageDialog(this, "Vui lòng chọn ứng dụng");
+                    return;
+                }
+                final JFrame[] frameRef = new JFrame[1];
+                switch (sel) {
+                    case "Countdown": frameRef[0] = new CountdownFrame(); break;
+                    case "Keyword Search": frameRef[0] = new ProgressDemoFrame(); break;
+                    case "Fibonacci": frameRef[0] = new FibonacciFrame(); break;
+                    case "File Tools": frameRef[0] = new FileLineCounterFrame(); break;
+                    case "Prime Sum": frameRef[0] = new PrimeSumFrame(); break;
+                    case "Student CSV Stats": frameRef[0] = new StudentCsvStatsFrame(); break;
+                    case "Product Manager": frameRef[0] = new ProductLoadFrame(); break;
+                }
+                if (frameRef[0] != null) {
+                    // hide menu while child frame is open
+                    MainMenuFrame.this.setVisible(false);
+                    // add a Back button to the top of the child frame
+                    JButton btnBackToMenu = new JButton("Quay lại");
+                    btnBackToMenu.addActionListener(ae -> {
+                        frameRef[0].dispose();
+                        MainMenuFrame.this.setVisible(true);
+                    });
+                    try {
+                        frameRef[0].getContentPane().add(btnBackToMenu, BorderLayout.NORTH);
+                    } catch (Exception ignored) {
+                    }
+                    // ensure menu re-appears when child frame closes
+                    frameRef[0].addWindowListener(new java.awt.event.WindowAdapter() {
+                        @Override
+                        public void windowClosed(java.awt.event.WindowEvent e) {
+                            MainMenuFrame.this.setVisible(true);
+                        }
+
+                        @Override
+                        public void windowClosing(java.awt.event.WindowEvent e) {
+                            MainMenuFrame.this.setVisible(true);
+                        }
+                    });
+                    frameRef[0].setVisible(true);
+                }
+            });
+
+            JPanel panel = new JPanel(new BorderLayout(10,10));
+            panel.add(new JScrollPane(list), BorderLayout.CENTER);
+            JPanel south = new JPanel();
+            south.add(btnOpen);
+            panel.add(south, BorderLayout.SOUTH);
+            add(panel);
         }
     }
 }
