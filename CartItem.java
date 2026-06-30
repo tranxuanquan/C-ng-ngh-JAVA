@@ -1,32 +1,32 @@
 package vn.edu.eaut.lab7.model;
 
-public class SanPham {
-    private int id;
+public class CartItem {
+    private int sanPhamId;
     private String ma;
     private String ten;
-    private String moTa;
     private double gia;
     private int soLuong;
 
-    public SanPham() {}
+    public CartItem() {}
 
-    public SanPham(int id, String ma, String ten, String moTa, double gia, int soLuong) {
-        this.id = id;
-        this.ma = ma;
-        this.ten = ten;
-        this.moTa = moTa;
-        this.gia = gia;
+    public CartItem(SanPham sp, int soLuong) {
+        this.sanPhamId = sp.getId();
+        this.ma = sp.getMa();
+        this.ten = sp.getTen();
+        this.gia = sp.getGia();
         this.soLuong = soLuong;
     }
 
-    public int getId() { return id; }
-    public void setId(int id) { this.id = id; }
+    public double getThanhTien() {
+        return gia * soLuong;
+    }
+
+    public int getSanPhamId() { return sanPhamId; }
+    public void setSanPhamId(int sanPhamId) { this.sanPhamId = sanPhamId; }
     public String getMa() { return ma; }
     public void setMa(String ma) { this.ma = ma; }
     public String getTen() { return ten; }
     public void setTen(String ten) { this.ten = ten; }
-    public String getMoTa() { return moTa; }
-    public void setMoTa(String moTa) { this.moTa = moTa; }
     public double getGia() { return gia; }
     public void setGia(double gia) { this.gia = gia; }
     public int getSoLuong() { return soLuong; }

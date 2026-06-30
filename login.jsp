@@ -1,21 +1,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <html>
-<head>
-    <title>Đăng nhập</title>
-</head>
+<head><title>Đăng nhập</title></head>
 <body>
 <h2>Đăng nhập hệ thống</h2>
-<form action="${pageContext.request.contextPath}/login" method="post">
-    <label>Tên đăng nhập:</label><br>
-    <input type="text" name="username"><br><br>
-
-    <label>Mật khẩu:</label><br>
-    <input type="password" name="password"><br><br>
-
+<c:if test="${not empty error}">
+    <p style="color:red">${error}</p>
+</c:if>
+<form method="post" action="${pageContext.request.contextPath}/login">
+    <p>Tên đăng nhập: <input name="username" required></p>
+    <p>Mật khẩu: <input name="password" type="password" required></p>
     <button type="submit">Đăng nhập</button>
 </form>
-<p style="color:red">${error}</p>
-<p>Admin: admin / 123456</p>
-<p>User: user / 123456</p>
+<p>Tài khoản demo: <code>admin / admin</code></p>
+<p><a href="${pageContext.request.contextPath}/index.jsp">Về trang chủ</a></p>
 </body>
 </html>
