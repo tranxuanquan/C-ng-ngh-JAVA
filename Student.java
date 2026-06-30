@@ -1,50 +1,40 @@
-package vn.edu.eaut.lab3;
-
+package vn.edu.eaut.lab6.model;
 public class Student {
-    private String maSinhVien;
-    private String hoTen;
-    private double diemTrungBinh;
-
-    public Student(String maSinhVien, String hoTen, double diemTrungBinh) {
-        this.maSinhVien = maSinhVien;
-        this.hoTen = hoTen;
-        this.diemTrungBinh = diemTrungBinh;
+    private String id;
+    private String name;
+    private String className;
+    private String email;
+    public Student() {
     }
-
-    public String getMaSinhVien() {
-        return maSinhVien;
+    public Student(String id, String name, String className, String email) {
+        this.id = id;
+        this.name = name;
+        this.className = className;
+        this.email = email;
     }
-
-    public void setMaSinhVien(String maSinhVien) {
-        this.maSinhVien = maSinhVien;
+    public String getId() {
+        return id;
     }
-
-    public String getHoTen() {
-        return hoTen;
+    public void setId(String id) {
+        this.id = id;
     }
-
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
+    public String getName() {
+        return name;
     }
-
-    public double getDiemTrungBinh() {
-        return diemTrungBinh;
+    public void setName(String name) {
+        this.name = name;
     }
-
-    public void setDiemTrungBinh(double diemTrungBinh) {
-        this.diemTrungBinh = diemTrungBinh;
+    public String getClassName() {
+        return className;
     }
+    public void setClassName(String className) {
+        this.className = className;
+    }
+    public String getEmail() {
+        return email;
 
-    public String getXepLoai() {
-        if (diemTrungBinh >= 8.5) {
-            return "Giỏi";
-        }
-        if (diemTrungBinh >= 7) {
-            return "Khá";
-        }
-        if (diemTrungBinh >= 5) {
-            return "Trung bình";
-        }
-        return "Yếu";
+    }
+    public void setEmail(String email) {
+        this.email = email;
     }
 }
