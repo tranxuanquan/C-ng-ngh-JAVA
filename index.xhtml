@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+<head>
+    <title>Quản Lý Sinh Viên</title>
+    <meta charset="UTF-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        .button { padding: 10px 20px; margin: 10px 5px 0 0; cursor: pointer; }
+        a { margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Quản Lý Sinh Viên</h1>
+        <h:form>
+            <h:commandButton value="+" action="sinhvien-form" styleClass="button"/>
+        </h:form>
+        <h:link value="Xem Danh Sach" outcome="sinhvien-list" styleClass="button"/>
+        <h:link value="Sach" outcome="sach-list" styleClass="button"/>
+        <h:link value="San pham" outcome="product-list" styleClass="button"/>
+        <h:link value="Dang nhap" outcome="login" styleClass="button"/>
+    </div>
+</body>
+</html>

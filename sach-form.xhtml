@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="jakarta.faces.html"
+      xmlns:f="jakarta.faces.core">
+<head>
+    <title>Thêm Sách</title>
+    <meta charset="UTF-8"/>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .form-group { margin: 15px 0; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, textarea { width: 100%; padding: 8px; box-sizing: border-box; }
+        .button { padding: 10px 20px; margin-top: 10px; cursor: pointer; margin-right: 5px; }
+        .error { color: red; font-size: 0.9em; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Thêm Sách</h1>
+        
+        <h:form>
+            <div class="form-group">
+                <label for="tenSach">Tên Sách:</label>
+                <h:inputText id="tenSach" value="#{sachBean.sach.tenSach}" required="true"/>
+                <h:message for="tenSach" styleClass="error"/>
+            </div>
+
+            <div class="form-group">
+                <label for="tacGia">Tác Giả:</label>
+                <h:inputText id="tacGia" value="#{sachBean.sach.tacGia}" required="true"/>
+                <h:message for="tacGia" styleClass="error"/>
+            </div>
+
+            <div class="form-group">
+                <label for="namXuatBan">Năm Xuất Bản:</label>
+                <h:inputText id="namXuatBan" value="#{sachBean.sach.namXuatBan}" required="true"/>
+                <h:message for="namXuatBan" styleClass="error"/>
+            </div>
+
+            <h:commandButton value="💾 Lưu Sách" action="#{sachBean.save()}" styleClass="button"/>
+            <h:link value="📋 Danh Sách Sách" outcome="sach-list" styleClass="button"/>
+        </h:form>
+
+        <h:messages globalOnly="true" layout="table" styleClass="success"/>
+    </div>
+</body>
+</html>
